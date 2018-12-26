@@ -25,6 +25,18 @@ export function saveToDo(todo) {
     .then(res => res.json())
     .catch(error => console.error('Error:', error));
 }
+export function deleteToDo(todo){
+    return fetch(`${url}/${todo}`, {
+        method: 'DELETE',
+        cache: 'no-cache',
+        headers: {
+            'user-agent': 'Mozilla/4.0 MDN Example',
+            'content-type': 'application/json'
+        },
+    })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error));
+}
 
 
 export function formatDate(dateString) {

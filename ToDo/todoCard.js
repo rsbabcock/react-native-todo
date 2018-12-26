@@ -6,6 +6,7 @@ import {
     TouchableHighlight
 } from 'react-native'
 import PropTypes from 'prop-types'
+import { deleteToDo } from '../api';
 
 export default function TodoCard({ todo }) {
     return (
@@ -16,7 +17,7 @@ export default function TodoCard({ todo }) {
             </View>
             <View style={styles.buttonContainer}>
                 <TouchableHighlight
-                    onPress={() => console.log("hello")}
+                    onPress={() => deleteToDo(todo.id)}
                     style={styles.buttonDelete}
                 >
                     <Text>Delete</Text>
