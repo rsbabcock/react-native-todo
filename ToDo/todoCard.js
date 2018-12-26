@@ -3,6 +3,7 @@ import {
     Text,
     View,
     StyleSheet,
+    TouchableHighlight
 } from 'react-native'
 import PropTypes from 'prop-types'
 
@@ -12,6 +13,20 @@ export default function TodoCard({ todo }) {
             <View style={styles.cardHeader}>
                 <Text style={styles.title}>{todo.title}</Text>
                 <Text style={styles.description}>{todo.description}</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+                <TouchableHighlight
+                    onPress={() => console.log("hello")}
+                    style={styles.buttonDelete}
+                >
+                    <Text>Delete</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                    onPress={() => console.log("hello")}
+                    style={styles.buttonDelete}
+                >
+                    <Text>Edit</Text>
+                </TouchableHighlight>
             </View>
         </View>
     )
@@ -24,24 +39,26 @@ TodoCard.propTypes = {
     })
 }
 const styles = StyleSheet.create({
+
     card: {
         backgroundColor: '#fff',
         flex: 1,
-        padding: 10,
+        flexDirection: "column",
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
         paddingTop: 10,
-        paddingBottom: 20,
-        margin: 10,
+        paddingBottom: 10,
         marginTop: 5,
         marginBottom: 5,
-        borderRadius: 5
+        borderRadius: 10,
+        width: 300
     },
     cardHeader: {
-        flex: 1,
-        flexDirection: 'column',
+        alignItems: 'center',
     },
     title: {
         fontSize: 15,
-        fontWeight: '300',
+        fontWeight: '400',
         marginLeft: 7,
         textAlign: 'left',
     },
@@ -50,5 +67,19 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         marginLeft: 7,
         textAlign: 'left',
+    },
+    buttonDelete: {
+        height: 30,
+        width: 50,
+        backgroundColor: '#5ED0FF',
+        alignSelf: 'stretch',
+        margin: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+    },
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'row'
     }
-  });
+});
