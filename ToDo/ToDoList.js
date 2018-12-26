@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
 });
 
 class ToDoList extends Component {
+    static navigationOptions = {
+        title: 'ToDo(s)',
+      };
 
     state = {
         todos: []
