@@ -10,6 +10,7 @@
     "expo": "^31.0.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+    "react-native-action-button": "^2.8.5",
     "react-native-gesture-handler": "^1.0.12",
     "react-native-navigation": "^2.2.5",
     "react-navigation": "^3.0.9"

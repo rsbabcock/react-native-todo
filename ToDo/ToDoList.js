@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, FlatList, Button, StyleSheet } from 'react-native'
+import { View, FlatList, Button, StyleSheet} from 'react-native'
+import ActionButton from 'react-native-action-button'
 import { getTodos } from '../api';
 import TodoCard from './todoCard'
 
@@ -27,9 +28,10 @@ class ToDoList extends Component {
         const { navigate } = this.props.navigation
         return (
             <View style={styles.container}>
-                <Button
+                <ActionButton
+                    key="fab"
                     onPress={() => navigate('ToDoForm', { name: 'ToDoForm' })}
-                    title="Add Todo"
+                    buttonColor="rgba(231, 76, 60, 1)"
                 />
                 <FlatList
                     data={this.state.todos}
