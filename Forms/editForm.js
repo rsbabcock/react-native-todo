@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   text: {
     height: 40,
-    // borderWidth: 1,
+    color: '#fff',
     margin: 0,
     marginLeft: 7,
     marginRight: 7,
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   },
   borderTop: {
     borderColor: '#edeeef',
+    color: '#fff',
     borderTopWidth: 0.5,
   },
   button: {
