@@ -26,8 +26,8 @@ export function saveToDo(todo) {
     .catch(error => console.error('Error:', error));
 }
 export function editTodo(todo) {
-    return fetch(`${url}/${todo}`, {
-        method: 'POST',
+    return fetch(`${url}/${todo.id}`, {
+        method: 'PUT',
         body: JSON.stringify(todo),
         cache: 'no-cache',
         headers: {

@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 // import DateTimePicker from 'react-native-modal-datetime-picker';
-import { saveToDo, getTodos } from '../api';
+import {getTodos, editTodo } from '../api';
 
 
 const styles = StyleSheet.create({
@@ -62,9 +62,14 @@ class EditForm extends Component {
     });
   }
 
-  handleEditPress = () => {
+  handleEditPress = (id) => {
       const {title, description} = this.state
-    saveToDo(this.state)
+      const updatedTodo = {
+          id: id,
+          title: title,
+          description: description
+      }
+    editTodo(updatedTodo)
     getTodos()
     .then(() => {
       this.props.navigation.goBack();
@@ -74,6 +79,7 @@ class EditForm extends Component {
   render() {
       const todo = this.props.navigation.getParam('todo', 'null')
       console.log(todo)
+      console.log(this.state)
     return (
       <View
         style={{
@@ -98,7 +104,7 @@ class EditForm extends Component {
         </View>
 
         <TouchableHighlight
-          onPress={this.handleEditPress}
+          onPress={()=>this.handleEditPress(todo.id)}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Edit</Text>
