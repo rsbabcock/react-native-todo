@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {
     Text,
     View,
@@ -8,30 +8,34 @@ import {
 import PropTypes from 'prop-types'
 import { deleteToDo } from '../api';
 
-export default function TodoCard({ todo }) {
-    return (
-        <View style={styles.card}>
-            <View style={styles.cardHeader}>
-                <Text style={styles.title}>{todo.title}</Text>
-                <Text style={styles.description}>{todo.description}</Text>
+class TodoCard extends Component {
+    render(){
+        const todo = this.props.todo
+        return (
+            <View style={styles.card}>
+                <View style={styles.cardHeader}>
+                    <Text style={styles.title}>{todo.title}</Text>
+                    <Text style={styles.description}>{todo.description}</Text>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableHighlight
+                        onPress={() => deleteToDo(todo.id)}
+                        style={styles.buttonDelete}
+                    >
+                        <Text>Delete</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                        onPress={() => this.props.navigate('EditForm', { todo : todo })}
+                        style={styles.buttonDelete}
+                    >
+                        <Text>Edit</Text>
+                    </TouchableHighlight>
+                </View>
             </View>
-            <View style={styles.buttonContainer}>
-                <TouchableHighlight
-                    onPress={() => deleteToDo(todo.id)}
-                    style={styles.buttonDelete}
-                >
-                    <Text>Delete</Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                    onPress={() => console.log("hello")}
-                    style={styles.buttonDelete}
-                >
-                    <Text>Edit</Text>
-                </TouchableHighlight>
-            </View>
-        </View>
-    )
+        )
+    }
 }
+export default TodoCard
 
 TodoCard.propTypes = {
     todo: PropTypes.shape({
@@ -70,17 +74,18 @@ const styles = StyleSheet.create({
         textAlign: 'left',
     },
     buttonDelete: {
-        height: 30,
-        width: 50,
+        height: 37,
+        width: 60,
         backgroundColor: '#5ED0FF',
         alignSelf: 'stretch',
-        margin: 1,
+        margin: 2,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
     },
     buttonContainer: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingTop: 5
     }
 });

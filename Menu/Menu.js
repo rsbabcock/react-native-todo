@@ -14,6 +14,7 @@ export default class Menu extends Component {
                     verticalOrientation="down"
                     offsetX={5}
                     style={{zIndex: 5}}
+                    size={40}
                 >
                     <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => this.props.navigate('ToDoForm', { name: 'ToDoForm' })}>
                         <Icon name="md-create" style={styles.actionButtonIcon} />
@@ -25,7 +26,7 @@ export default class Menu extends Component {
 
 const styles = StyleSheet.create({
     actionButtonIcon: {
-        fontSize: 20,
+        fontSize: 10,
         height: 22,
         color: 'white',
     },

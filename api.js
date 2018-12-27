@@ -25,6 +25,19 @@ export function saveToDo(todo) {
     .then(res => res.json())
     .catch(error => console.error('Error:', error));
 }
+export function editTodo(todo) {
+    return fetch(`${url}/${todo}`, {
+        method: 'POST',
+        body: JSON.stringify(todo),
+        cache: 'no-cache',
+        headers: {
+            'user-agent': 'Mozilla/4.0 MDN Example',
+            'content-type': 'application/json'
+        },
+    })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error));
+}
 export function deleteToDo(todo){
     return fetch(`${url}/${todo}`, {
         method: 'DELETE',
@@ -48,7 +61,6 @@ export function formatDate(dateString) {
 
     return parsed.format('D MMM YYYY');
 }
-
 
 export function formatDateTime(dateString) {
     console.log(dateString);

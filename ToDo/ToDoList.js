@@ -35,9 +35,8 @@ class ToDoList extends Component {
                 <Menu navigate={navigate} />
                 <FlatList
                     data={this.state.todos}
-                    renderItem={({ item }) => <TodoCard todo={item} />}
+                    renderItem={({ item }) => <TodoCard todo={item} navigate={navigate} />}
                     keyExtractor={item => (item.id)}
-                    navigate={navigate}
                 />
             </View>
         )
