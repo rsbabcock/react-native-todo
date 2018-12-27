@@ -3,12 +3,20 @@ import {
     Text,
     View,
     StyleSheet,
-    TouchableHighlight
+    TouchableOpacity
 } from 'react-native'
-import PropTypes from 'prop-types'
-import { deleteToDo } from '../api';
+import { deleteToDo} from '../api';
 
 class TodoCard extends Component {
+    state = {
+        hidden: false
+    }
+
+    handleDelete(id){
+        setInterval(() => {
+            deleteToDo(id)
+          }, 1000);
+    }
     render(){
         const todo = this.props.todo
         return (
@@ -18,18 +26,18 @@ class TodoCard extends Component {
                     <Text style={styles.description}>{todo.description}</Text>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <TouchableHighlight
-                        onPress={() => deleteToDo(todo.id)}
+                    <TouchableOpacity
+                        onPress={()=>this.handleDelete(todo.id)}
                         style={styles.buttonDelete}
                     >
                         <Text>Delete</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight
+                    </TouchableOpacity>
+                    <TouchableOpacity
                         onPress={() => this.props.navigate('EditForm', { todo : todo })}
                         style={styles.buttonDelete}
                     >
                         <Text>Edit</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -37,12 +45,6 @@ class TodoCard extends Component {
 }
 export default TodoCard
 
-TodoCard.propTypes = {
-    todo: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        description: PropTypes.string
-    })
-}
 const styles = StyleSheet.create({
 
     card: {

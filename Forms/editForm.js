@@ -4,10 +4,11 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 // import DateTimePicker from 'react-native-modal-datetime-picker';
-import {getTodos, editTodo } from '../api';
+import { getTodos, editTodo } from '../api';
 
 
 const styles = StyleSheet.create({
@@ -63,53 +64,51 @@ class EditForm extends Component {
   }
 
   handleEditPress = (id) => {
-      const {title, description} = this.state
-      const updatedTodo = {
-          id: id,
-          title: title,
-          description: description
-      }
+    const { title, description } = this.state
+    const updatedTodo = {
+      id: id,
+      title: title,
+      description: description
+    }
     editTodo(updatedTodo)
     getTodos()
-    .then(() => {
-      this.props.navigation.goBack();
-    })
+      .then(() => {
+        this.props.navigation.goBack();
+      })
   }
 
   render() {
-      const todo = this.props.navigation.getParam('todo', 'null')
-      console.log(todo)
-      console.log(this.state)
+    const todo = this.props.navigation.getParam('todo', 'null')
+    console.log(todo)
+    console.log(this.state)
     return (
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-        <View style={styles.fieldContainer}>
-          <TextInput
-            style={styles.text}
-            onChangeText={this.handleChangeTitle}
-            placeholder={todo.title}
-            spellCheck={false}
-            value={this.state.title}
-          />
-          <TextInput
-            style={[ styles.text, styles.borderTop ]}
-            onChangeText={this.handleChangeDescription}
-            placeholder={todo.description}
-            spellCheck={false}
-            value={this.state.description}
-          />
-        </View>
+      <ImageBackground source={require('../img/bg.png')} style={{ width: '100%', height: '100%' }}>
+        <View style={{ flex: 1 }}>
+          <View style={styles.fieldContainer}>
+            <TextInput
+              style={styles.text}
+              onChangeText={this.handleChangeTitle}
+              placeholder={todo.title}
+              spellCheck={false}
+              value={this.state.title}
+            />
+            <TextInput
+              style={[styles.text, styles.borderTop]}
+              onChangeText={this.handleChangeDescription}
+              placeholder={todo.description}
+              spellCheck={false}
+              value={this.state.description}
+            />
+          </View>
 
-        <TouchableHighlight
-          onPress={()=>this.handleEditPress(todo.id)}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Edit</Text>
-        </TouchableHighlight>
-      </View>
+          <TouchableOpacity
+            onPress={() => this.handleEditPress(todo.id)}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Edit</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }

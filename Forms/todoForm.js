@@ -4,7 +4,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 // import DateTimePicker from 'react-native-modal-datetime-picker';
 import { saveToDo, getTodos } from '../api';
@@ -63,45 +64,43 @@ class ToDoForm extends Component {
   }
 
   handleAddPress = () => {
-      const {title, description} = this.state
+    const { title, description } = this.state
     saveToDo(this.state)
     getTodos()
-    .then(() => {
-      this.props.navigation.goBack();
-    })
+      .then(() => {
+        this.props.navigation.goBack();
+      })
   }
 
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-        <View style={styles.fieldContainer}>
-          <TextInput
-            style={styles.text}
-            onChangeText={this.handleChangeTitle}
-            placeholder="To Do title"
-            spellCheck={false}
-            value={this.state.title}
-          />
-          <TextInput
-            style={[ styles.text, styles.borderTop ]}
-            onChangeText={this.handleChangeDescription}
-            placeholder="To Do description"
-            spellCheck={false}
-            value={this.state.description}
-          />
-        </View>
+      <ImageBackground source={require('../img/bg.png')} style={{ width: '100%', height: '100%' }}>
+        <View style={{ flex: 1 }}>
+          <View style={styles.fieldContainer}>
+            <TextInput
+              style={styles.text}
+              onChangeText={this.handleChangeTitle}
+              placeholder="To Do title"
+              spellCheck={false}
+              value={this.state.title}
+            />
+            <TextInput
+              style={[styles.text, styles.borderTop]}
+              onChangeText={this.handleChangeDescription}
+              placeholder="To Do description"
+              spellCheck={false}
+              value={this.state.description}
+            />
+          </View>
 
-        <TouchableHighlight
-          onPress={this.handleAddPress}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableHighlight>
-      </View>
+          <TouchableOpacity
+            onPress={this.handleAddPress}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }

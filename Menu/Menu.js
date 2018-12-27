@@ -9,12 +9,12 @@ export default class Menu extends Component {
     render() {
         return (
                 <ActionButton
-                    buttonColor="rgba(231, 76, 60, 1)"
+                    buttonColor="rgba(41, 20, 111, 1)"
                     position="left"
                     verticalOrientation="down"
                     offsetX={5}
                     style={{zIndex: 5}}
-                    size={40}
+                    size={50}
                 >
                     <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => this.props.navigate('ToDoForm', { name: 'ToDoForm' })}>
                         <Icon name="md-create" style={styles.actionButtonIcon} />
@@ -26,7 +26,7 @@ export default class Menu extends Component {
 
 const styles = StyleSheet.create({
     actionButtonIcon: {
-        fontSize: 10,
+        fontSize: 22,
         height: 22,
         color: 'white',
     },
